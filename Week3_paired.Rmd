@@ -2,7 +2,9 @@
 title: "Week3_Paired"
 author: "Dehua Bi"
 date: "14/10/2020"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -134,4 +136,4 @@ simp_linear <- lm(mpg ~ hp, data = mtcars)
 summary(simp_linear)
 ```
 
-We see that the R squared value is 0.6024, which means that hp is able to explain 60.24% of the variations in mpg. Also, the intercept of hp is -0.07, with P value < 0.05, this means that a unit increase in hp will results in decrease in mpg by 0.07 units, and this estimation is significant.
+We see that the R squared value is 0.6024, which means that hp is able to explain 60.24% of the variations in mpg. Also, the intercept of hp is -0.07, with P value < 0.05, this means that a unit increase in hp will results in decrease in mpg by 0.07 units, and this estimation is statistically significant.
