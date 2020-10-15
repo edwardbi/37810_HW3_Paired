@@ -1,0 +1,137 @@
+---
+title: "Week3_Paired"
+author: "Dehua Bi"
+date: "14/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 4
+
+Using the import dataset menu item in RStudio, import the csv file into a data frame. Call the data frame df.
+
+```{r}
+df <- read.csv("family_facts.csv")
+```
+
+## Question 5
+
+Add a new row to the data frame from within R. The easiest way to do this is using the tibble library. If your data frame is called df, the code is like this:
+
+library(tibble)
+
+df <-  df %>% add_row(name = “Kendra”, age = “12”, etc)
+
+Note that the term “df” appears twice above. df %>% …  means that df is the data frame to add the row to, and we write df <- to save the new, longer data frame back to the variable called df. 
+
+```{r}
+library(tibble)
+
+df <- df %>% add_row(name = "Edward Bi", age = 30, city = "Chicago", favorite.color = "Green", favorite.book = "The great Gatesby", favorite.cuisine = "Korean food")
+
+```
+
+## Question 6
+
+Now we will work with the built-in dataset, mtcars. In one of your R chunks, type head(mtcars) to take a peek at the data frame and its columns.
+
+```{r}
+head(mtcars)
+```
+
+## Question 7
+
+What row number is the Datsun 710? What column number says how many cylinders the engines have? Using these two numbers, find out how many cylinders that Datsun 710 has..
+
+```{r}
+#mtcars[3,]
+mtcars[3,2]
+```
+
+The row number of Datsun 710 is 3, which means it is in the 3rd row. Column 2 (Column cyl) says about how many cylinders the engines have, for Datsun 710, it has 4 cylinders.
+
+## Question 8
+
+Repeat the same exercise using the row and column names
+
+```{r}
+mtcars["Datsun 710", "cyl"]
+```
+
+## Question 9
+
+Use two commands to find how many rows and columns the dataframe has.
+
+```{r}
+nrow(mtcars)
+ncol(mtcars)
+```
+
+There are 32 rows and 11 columns in the dataset.
+
+## Question 10
+
+Column vectors: Using double square brackets, extract a vector containing all the MPGs of all the cars.. Do this two ways: using the number of the column, and the name.
+
+```{r}
+# Using number of col:
+extracted_col_vec_m1 = mtcars[[1]]
+print(extracted_col_vec_m1)
+# Using name of col:
+extracted_col_vec_m2 = mtcars[["mpg"]]
+print(extracted_col_vec_m2)
+```
+
+## Question 11
+
+Now extract the column using the dollar sign operator.
+
+```{r}
+extracted_col_vec_m3 = mtcars$mpg
+print(extracted_col_vec_m3)
+```
+
+## Question 12
+
+Using single brackets, we can extract the same column vector, but this time with named rows. We can also extract multiple columns at once by creating a vector of column names or indices to extract, for instance c(â€œmpg, hpâ€). Use this technique to extractÂ Â the mpg and hp of all the cars.
+
+```{r}
+mpg_and_hp = c(mtcars$mpg, mtcars$hp)
+print(mpg_and_hp)
+```
+
+## Question 13
+
+Find the mean mpg of all the cars.
+
+```{r}
+mean_mpg = mean(mtcars$mpg)
+print(mean_mpg)
+```
+
+The mean mpg is 20.09
+
+## Question 14
+
+Plot a scatter plot of the hp vs mpg of all the cars.
+
+```{r}
+x <- mtcars$hp
+y <- mtcars$mpg
+
+plot(x,y)
+```
+
+## Question 15
+
+Run a simple linear regression to see how hp affects mpg.
+
+```{r}
+simp_linear <- lm(mpg ~ hp, data = mtcars)
+summary(simp_linear)
+```
+
+We see that the R squared value is 0.6024, which means that hp is able to explain 60.24% of the variations in mpg. Also, the intercept of hp is -0.07, with P value < 0.05, this means that a unit increase in hp will results in decrease in mpg by 0.07 units, and this estimation is significant.
