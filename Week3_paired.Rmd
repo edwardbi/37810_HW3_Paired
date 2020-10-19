@@ -1,6 +1,6 @@
 ---
 title: "Week3_Paired"
-author: "Dehua Bi"
+author: "Dehua Bi and Yihao Lu"
 date: "14/10/2020"
 output:
   html_document: default
@@ -34,6 +34,8 @@ library(tibble)
 
 df <- df %>% add_row(name = "Edward Bi", age = 30, city = "Chicago", favorite.color = "Green", favorite.book = "The great Gatesby", favorite.cuisine = "Korean food")
 
+df <- df %>% add_row(name = "Yihao Lu", age = 30, city = "Chicago", favorite.color = "Blue", favorite.book = "The second leader", favorite.cuisine = "Japanese food")
+
 ```
 
 ## Question 6
@@ -49,8 +51,9 @@ head(mtcars)
 What row number is the Datsun 710? What column number says how many cylinders the engines have? Using these two numbers, find out how many cylinders that Datsun 710 has..
 
 ```{r}
-#mtcars[3,]
-mtcars[3,2]
+which(rownames(mtcars) == "Datsun 710")
+which(colnames(mtcars) == "cyl")
+mtcars[rownames(mtcars) == "Datsun 710",colnames(mtcars) == "cyl"]
 ```
 
 The row number of Datsun 710 is 3, which means it is in the 3rd row. Column 2 (Column cyl) says about how many cylinders the engines have, for Datsun 710, it has 4 cylinders.
